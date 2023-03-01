@@ -1,0 +1,35 @@
+version: 2.1
+
+orbs:
+  node: circleci/node@4.6.2
+  expo: orbitera/expo@1.1.0
+
+jobs:
+  build:
+    docker:
+      - image: circleci/node:12.18.3-buster
+    steps:
+      - checkout
+      - node/with-cache:
+          steps:
+            - run: yarn install
+            - run: yarn build
+      - persist_to_workspace:
+          root: .
+          paths:
+            - app.json
+            - .expo
+            - .next
+            - node_modules
+            - public
+            - src
+            - package.json
+            - yarn.lock
+      - store_artifacts:
+          path: app-release.aab
+
+workflows:
+  version: 2.1
+  build:
+    jobs:
+      - build
