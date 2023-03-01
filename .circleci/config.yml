@@ -1,9 +1,5 @@
 version: 2.1
 
-orbs:
-  node: circleci/node@4.6.2
-  expo: orbitera/expo@1.1.0
-
 jobs:
   build:
     docker:
