@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "codeMagic",
-    "slug": "codeMagic",
+    "name": "sin",
+    "slug": "sin",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,17 +14,22 @@
     "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "io.codemagic.sample.reactnative"
+      "bundleIdentifier": "com.sinwattana.com"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "io.codemagic.sample.reactnative"
+      "package": "com.sinwattana.com"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "94360295-bd13-4796-b952-44b7646d3a75"
+      }
     }
   }
 }
