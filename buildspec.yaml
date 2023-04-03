@@ -1,0 +1,28 @@
+version: 0.3
+
+phases:
+  install:
+    runtime-versions:
+      nodejs: 18
+    commands:
+      - npm install -g expo-cli
+  pre_build:
+    commands:
+      - echo "Pre-build phase"
+  build:
+    commands:
+      - echo "Building Expo app"
+      - eas build --platform android --non-interactive
+  post_build:
+    commands:
+      - echo "Post-build phase"
+      - echo "Uploading app to Google Play Store..."
+      - curl -X POST -H "Authorization: Bearer $PLAY_STORE_AUTH_TOKEN" -F "bundle=@app-build.aab" -F "track=alpha" https://www.googleapis.com/upload/androidpublisher/v3/applications/${PLAY_STORE_PACKAGE_NAME}/edits/${PLAY_STORE_EDIT_ID}/bundles
+      - echo "Upload complete"
+      - echo "Cleaning up"
+      - rm app-build.aab
+
+artifacts:
+  files:
+    - app-build.aab
+  name: ExpoApp
